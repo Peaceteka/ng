@@ -9,7 +9,6 @@ const integrations = [
   {
     name: 'CRM',
     description: 'Manage relationships with customers, clients, patients, or students. Used by businesses, hospitals, and schools.',
-    logo: '/images/integrations/crm.png',
     category: 'Business',
     color: 'from-blue-500 to-blue-600',
     delay: 0.1,
@@ -18,7 +17,6 @@ const integrations = [
   {
     name: 'ERP',
     description: 'Integrates key operations — finance, HR, inventory, procurement, and more. Used by businesses, hospitals, and government.',
-    logo: '/images/integrations/erp.png',
     category: 'Business',
     color: 'from-purple-500 to-indigo-600',
     delay: 0.2,
@@ -27,7 +25,6 @@ const integrations = [
   {
     name: 'POS',
     description: 'Handle sales transactions, payments, and inventory updates. Perfect for retail, hospital pharmacies, and school canteens.',
-    logo: '/images/integrations/pos.png',
     category: 'Retail',
     color: 'from-green-500 to-emerald-600',
     delay: 0.3,
@@ -36,7 +33,6 @@ const integrations = [
   {
     name: 'HMS',
     description: 'Comprehensive hospital management for patients, staff, appointments, billing, and pharmacy operations.',
-    logo: '/images/integrations/hms.png',
     category: 'Healthcare',
     color: 'from-red-500 to-pink-600',
     delay: 0.4,
@@ -45,7 +41,6 @@ const integrations = [
   {
     name: 'LMS',
     description: 'Deliver, track, and manage educational content and student performance. Ideal for schools and training centers.',
-    logo: '/images/integrations/lms.png',
     category: 'Education',
     color: 'from-yellow-500 to-amber-600',
     delay: 0.5,
@@ -54,7 +49,6 @@ const integrations = [
   {
     name: 'HRMS',
     description: 'Manage employee data, payroll, recruitment, performance, and leave for businesses and organizations.',
-    logo: '/images/integrations/hrms.png',
     category: 'Business',
     color: 'from-indigo-500 to-violet-600',
     delay: 0.6,
@@ -78,14 +72,8 @@ const IntegrationCard = ({ integration, index }: { integration: typeof integrati
         <div className="flex items-start justify-between">
           <div className="flex items-start space-x-4">
             <div className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${integration.color} p-3`}>
-              <div className="h-10 w-10">
-                <Image
-                  src={integration.logo}
-                  alt={integration.name}
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 object-contain"
-                />
+              <div className="flex h-16 w-16 items-center justify-center">
+                <span className="text-xl font-bold text-white">{integration.name}</span>
               </div>
             </div>
             <div>

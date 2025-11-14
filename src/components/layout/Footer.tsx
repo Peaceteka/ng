@@ -156,7 +156,11 @@ export default function Footer() {
   
   useEffect(() => {
     const cleanup = addKeyframes();
-    return () => cleanup && cleanup();
+    return () => {
+      if (cleanup) {
+        cleanup();
+      }
+    };
   }, []);
 
   return (

@@ -32,7 +32,22 @@ const features = [
 ];
 
 // Floating notification component
-const NotificationBubble = ({ icon: Icon, text, delay, position }: { icon: any, text: string, delay: number, position: { top: string, left: string } }) => (
+const NotificationBubble = ({ 
+  icon: Icon, 
+  text, 
+  delay, 
+  position 
+}: { 
+  icon: any, 
+  text: string, 
+  delay: number, 
+  position: { 
+    top?: string, 
+    right?: string, 
+    bottom?: string, 
+    left?: string 
+  } 
+}) => (
   <motion.div
     className="absolute z-0 bg-gray-800/90 backdrop-blur-sm p-3 rounded-lg shadow-lg flex items-center space-x-2 border border-gray-700"
     initial={{ opacity: 0, y: 20, scale: 0.8 }}

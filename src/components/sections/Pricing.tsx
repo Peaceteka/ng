@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion, useAnimation, useInView, Variants } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { FaCheck, FaCheckCircle, FaPaperPlane, FaRocket, FaStar, FaTrophy } from 'react-icons/fa';
 
@@ -105,7 +105,7 @@ const Pricing = () => {
     setBillingCycle(prev => prev === 'monthly' ? 'annually' : 'monthly');
   };
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -116,14 +116,14 @@ const Pricing = () => {
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.4, 0, 0.2, 1] as any
       },
     },
   };
