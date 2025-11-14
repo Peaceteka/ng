@@ -98,51 +98,48 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: typeof testimoni
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/5 to-white/0 p-0.5 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10"
+    className="group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md"
   >
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-gray-900 to-gray-800/80 opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-    
     <div className="relative z-10 h-full p-6">
       <div className="absolute top-6 right-6">
-        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-blue-900/30 text-blue-400 group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300">
-          <div className="text-2xl font-bold text-blue-400 group-hover:text-white">"</div>
+        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-blue-50 text-blue-600 group-hover:bg-blue-100 group-hover:scale-110 transition-all duration-300">
+          <div className="text-2xl font-bold text-blue-600 group-hover:text-blue-700">"</div>
         </div>
       </div>
       
       <div className="pr-10">
         <StarRating rating={testimonial.rating} />
-        <p className="my-4 text-gray-300 group-hover:text-white transition-colors duration-300">{testimonial.quote}</p>
+        <p className="my-4 text-gray-600 group-hover:text-gray-800 transition-colors duration-300">{testimonial.quote}</p>
       </div>
       
-      <div className="mt-8 pt-4 border-t border-gray-800 group-hover:border-blue-500/30 transition-colors duration-300">
+      <div className="mt-8 pt-4 border-t border-gray-100 group-hover:border-blue-100 transition-colors duration-300">
         <div className="flex items-center">
           <div className="relative
             mr-4 flex h-12 w-12 items-center justify-center rounded-full 
-            bg-gradient-to-br from-blue-500 to-blue-700 text-lg font-bold text-white
-            group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/20
+            bg-gradient-to-br from-blue-600 to-blue-700 text-lg font-bold text-white
+            group-hover:scale-110 group-hover:shadow-md
             transition-all duration-300
           ">
             {testimonial.author.initials}
-            <div className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-gray-900 bg-green-500"></div>
+            <div className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
           </div>
           
           <div>
-            <p className="font-medium text-white">{testimonial.author.name}</p>
-            <p className="text-sm text-gray-400 group-hover:text-blue-300 transition-colors duration-300">
+            <p className="font-medium text-gray-900">{testimonial.author.name}</p>
+            <p className="text-sm text-gray-600 group-hover:text-blue-700 transition-colors duration-300">
               {testimonial.author.title}
             </p>
             <div className="flex items-center mt-1">
-              <span className="text-xs bg-gray-800 text-gray-300 px-2 py-0.5 rounded-full">
+              <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full">
                 {testimonial.author.company}
               </span>
-              <span className="mx-2 text-gray-600">•</span>
+              <span className="mx-2 text-gray-300">•</span>
               <span className="text-xs text-gray-500">{testimonial.author.location}</span>
             </div>
           </div>
           
           <div className="ml-auto">
-            <div className="rounded-full bg-green-900/30 px-4 py-2 text-sm font-medium text-green-400 group-hover:bg-green-500/20 group-hover:text-green-300 transition-colors duration-300">
+            <div className="rounded-full bg-green-50 px-4 py-2 text-sm font-medium text-green-700 group-hover:bg-green-100 group-hover:text-green-800 transition-colors duration-300">
               {testimonial.stat}
             </div>
           </div>
@@ -154,28 +151,25 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: typeof testimoni
 
 const CompanyLogo = ({ initials, name }: { initials: string, name: string }) => (
   <div className="flex flex-col items-center">
-    <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 text-2xl font-bold text-blue-400">
+    <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 text-2xl font-bold text-blue-600">
       {initials}
     </div>
-    <span className="mt-2 text-sm font-medium text-gray-300">{name}</span>
+    <span className="mt-2 text-sm font-medium text-gray-600">{name}</span>
   </div>
 );
 
 const StatCard = ({ value, label }: { value: string, label: string }) => (
   <div className="text-center">
-    <div className="text-4xl font-bold text-white md:text-5xl">{value}</div>
-    <div className="mt-2 text-sm font-medium text-gray-400">{label}</div>
+    <div className="text-4xl font-bold text-gray-900 md:text-5xl">{value}</div>
+    <div className="mt-2 text-sm font-medium text-gray-600">{label}</div>
   </div>
 );
 
 const Testimonials = () => {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28">
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute -right-1/4 -top-1/4 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl"></div>
-        <div className="absolute -left-1/4 bottom-0 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl"></div>
-      </div>
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
@@ -185,10 +179,10 @@ const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Loved by developers and <span className="text-blue-400">trusted by enterprises</span>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
+            Loved by developers and <span className="text-blue-600">trusted by enterprises</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
             Join thousands of companies across Africa who rely on our platform for their critical communications.
           </p>
         </motion.div>

@@ -110,15 +110,10 @@ export default function WhyChooseUs() {
   return (
     <section 
       ref={ref}
-      className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className="relative py-20 overflow-hidden bg-white"
     >
-      {/* Animated background elements */}
-      <LightningBolt />
-      
-      {/* Glowing orbs */}
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
       
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto mb-20">
@@ -127,13 +122,16 @@ export default function WhyChooseUs() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-400 bg-blue-900/50 rounded-full mb-4">
+            <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-50 rounded-full mb-4">
               Why Choose Us
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Powering Africa's Digital Future
             </h2>
-            <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="mt-4 text-sm text-gray-500">
+              No credit card required • Cancel anytime • 30-day free trial
+            </p>
+            <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
               We're not just a messaging platform - we're your strategic partner in connecting with Africa.
             </p>
           </motion.div>
@@ -143,41 +141,24 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="relative group bg-gradient-to-br from-gray-800/50 to-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 overflow-hidden"
+              className="relative group bg-white p-6 rounded-2xl border border-gray-100 hover:border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: feature.delay }}
               whileHover={{ y: -5, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
             >
-              {/* Animated background effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              {/* Glow effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition duration-1000 group-hover:duration-200"></div>
-              
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-300">{feature.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
               
-              {/* Lightning bolt accent */}
-              <motion.div 
-                className="absolute -right-4 -bottom-4 text-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                animate={{
-                  x: [0, -10, 10, 0],
-                  y: [0, -5, 5, 0],
-                }}
-                transition={{
-                  duration: 0.8,
-                  repeat: Infinity,
-                  repeatType: 'mirror'
-                }}
-              >
-                <FaBolt className="h-12 w-12 opacity-20" />
-              </motion.div>
+              {/* Hover accent */}
+              <div className="absolute -right-4 -bottom-4 text-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <FaBolt className="h-12 w-12" />
+              </div>
             </motion.div>
           ))}
         </div>
@@ -192,7 +173,7 @@ export default function WhyChooseUs() {
           <div className="inline-flex flex-col sm:flex-row gap-4">
             <motion.a
               href="/get-started"
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex items-center justify-center"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex items-center justify-center"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -201,11 +182,12 @@ export default function WhyChooseUs() {
             </motion.a>
             <motion.a
               href="/contact"
-              className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg border border-gray-700 hover:border-gray-600 transition-all duration-300 flex items-center justify-center"
+              className="px-8 py-4 bg-white text-gray-700 border border-gray-200 hover:border-blue-200 font-medium rounded-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-center"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
-              Talk to an Expert
+              Contact Sales
+              <FaBolt className="ml-2 text-blue-600" />
             </motion.a>
           </div>
         </motion.div>

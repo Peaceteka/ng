@@ -131,13 +131,11 @@ const Pricing = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+      className="relative py-20 overflow-hidden bg-white"
       id="pricing"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-10 dark:opacity-5">
-        <div className="absolute inset-0 bg-grid-gray-400/20 dark:bg-grid-gray-700/50 [mask-image:linear-gradient(to_bottom,transparent,white,transparent)] dark:[mask-image:linear-gradient(to_bottom,transparent,rgba(0,0,0,0.5),transparent)]"></div>
-      </div>
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
       
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto mb-16">
@@ -146,14 +144,14 @@ const Pricing = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 mb-4">
-              <FaStar className="mr-2" />
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-blue-50 text-blue-700 mb-4">
+              <FaStar className="mr-2 text-blue-600" />
               Simple, Transparent Pricing
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-4">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
               Pricing that scales with your business
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-600">
               Start for free, upgrade as you grow. No hidden fees, cancel anytime.
             </p>
           </motion.div>
@@ -170,69 +168,70 @@ const Pricing = () => {
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              className={`relative flex flex-col rounded-2xl bg-white dark:bg-gray-800/50 backdrop-blur-sm border ${
+              className={`relative flex flex-col rounded-2xl bg-white border ${
                 plan.popular 
-                  ? 'border-2 border-blue-500 shadow-xl dark:shadow-blue-900/20' 
-                  : 'border-gray-200 dark:border-gray-700'
-              } overflow-hidden`}
+                  ? 'border-2 border-blue-500 shadow-lg' 
+                  : 'border-gray-200'
+              } overflow-hidden transition-all duration-300 hover:shadow-md`}
               variants={item}
               whileHover={{ y: -5, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
               transition={{ duration: 0.3 }}
             >
               {plan.popular && (
                 <div className="absolute top-0 right-0 -mt-3 -mr-3">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-lg">
-                    <FaTrophy className="mr-1" /> {plan.popularText || 'Popular'}
+                  <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md">
+                    <FaTrophy className="mr-1 text-yellow-300" /> {plan.popularText || 'Popular'}
                   </div>
                 </div>
               )}
               
               <div className="p-6 sm:p-8">
-                <div className={`mb-6 h-1 bg-gradient-to-r ${plan.color} rounded-full`}></div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  {plan.description}
-                </p>
+                <div className="p-6 bg-gray-50 border-t border-gray-100">
+                  <h4 className="text-sm font-medium text-gray-500 mb-3">
+                    What's included:
+                  </h4>
+                  <p className="text-gray-600 mb-6">
+                    {plan.description}
+                  </p>
                 
-                <div className="mb-6">
-                  <div className="flex items-baseline">
-                    <span className="text-4xl font-extrabold text-gray-900 dark:text-white">
-                      {plan.price}
-                    </span>
+                  <div className="mb-6">
+                    <div className="flex items-baseline">
+                      <span className="text-4xl font-extrabold text-gray-900">
+                        {plan.price}
+                      </span>
+                      {plan.subtitle && (
+                        <span className="ml-2 text-sm font-medium text-gray-500">
+                          {plan.subtitle}
+                        </span>
+                      )}
+                    </div>
+
+                    <ul className="space-y-3 mb-8">
+                      {plan.features.map((feature, i) => (
+                        <li key={feature} className="flex items-start">
+                          <FaCheck className="h-5 w-5 flex-shrink-0 text-green-500 mt-0.5" />
+                          <span className="ml-3 text-gray-600">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-auto pt-4">
+                      <motion.button
+                        className={`w-full mt-6 flex items-center justify-center px-6 py-3 border border-transparent rounded-md text-base font-medium text-white bg-gradient-to-r ${plan.color} hover:opacity-90 shadow-sm transition-opacity`}
+                      >
+                        {plan.cta}
+                        {plan.cta === 'Contact Sales' ? (
+                          <FaPaperPlane className="ml-2 -mr-1 h-4 w-4" />
+                        ) : plan.cta === 'Start Free' ? (
+                          <FaRocket className="ml-2 -mr-1 h-4 w-4" />
+                        ) : (
+                          <FaCheckCircle className="ml-2 -mr-1 h-4 w-4" />
+                        )}
+                      </motion.button>
+                    </div>
                   </div>
-                  {plan.subtitle && (
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                      {plan.subtitle}
-                    </p>
-                  )}
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <FaCheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                      <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-auto pt-4">
-                  <motion.button
-                    className={`w-full px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r ${plan.color} hover:${plan.hoverColor} transition-all duration-300 flex items-center justify-center`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {plan.cta}
-                    {plan.name === 'Developer' ? (
-                      <FaRocket className="ml-2" />
-                    ) : plan.name === 'Enterprise' ? (
-                      <FaPaperPlane className="ml-2" />
-                    ) : (
-                      <FaCheck className="ml-2" />
-                    )}
-                  </motion.button>
                 </div>
               </div>
             </motion.div>
