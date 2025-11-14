@@ -26,7 +26,7 @@ const Star = () => {
   
   return (
     <div 
-      className="absolute rounded-full bg-white"
+      className="absolute rounded-full bg-blue-100"
       style={styles}
     />
   );
@@ -56,7 +56,7 @@ const Bubble = () => {
   
   return (
     <div 
-      className="absolute rounded-full bg-blue-500/10"
+      className="absolute rounded-full bg-blue-100/50"
       style={styles}
     />
   );
@@ -166,17 +166,11 @@ export default function Footer() {
   return (
     <footer 
       ref={footerRef}
-      className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 border-t border-gray-800" 
+      className="relative overflow-hidden bg-white border-t border-gray-100" 
       aria-labelledby="footer-heading"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {generateElements(50, Star)}
-        {generateElements(15, Bubble)}
-        
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-gray-900/30 pointer-events-none"></div>
-      </div>
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
       <div className="relative z-10 container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <motion.div 
@@ -190,12 +184,12 @@ export default function Footer() {
               whileHover={{ scale: 1.02 }}
               className="inline-block"
             >
-              <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                 GreySilicon
               </span>
             </motion.div>
-            <p className="text-gray-400 text-base max-w-md">
-              Enterprise-grade messaging APIs powering African businesses with reliable communication solutions.
+            <p className="text-gray-500 text-sm">
+              {country?.country_name ? `Serving ${country.country_name}` : 'Loading location...'}
             </p>
             <div className="flex space-x-4">
               {navigation.social.map((item, index) => (
@@ -237,7 +231,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-base text-gray-400 hover:text-white transition-colors duration-200"
+                        className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
@@ -254,7 +248,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-base text-gray-400 hover:text-white transition-colors duration-200"
+                        className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
@@ -273,7 +267,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-base text-gray-400 hover:text-white transition-colors duration-200"
+                        className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
@@ -291,7 +285,7 @@ export default function Footer() {
                       <motion.a
                         key={`email-${country.code}`}
                         href={`mailto:${country.email}`}
-                        className="text-base text-gray-400 hover:text-white transition-colors duration-200 block"
+                        className="text-gray-500 hover:text-blue-600 transition-colors duration-200 block"
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
@@ -306,7 +300,7 @@ export default function Footer() {
                       <motion.a
                         key={`phone-${country.code}`}
                         href={`tel:${country.phone.replace(/\s+/g, '')}`}
-                        className="text-base text-gray-400 hover:text-white transition-colors duration-200 block"
+                        className="text-gray-500 hover:text-blue-600 transition-colors duration-200 block"
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
@@ -327,18 +321,18 @@ export default function Footer() {
       <div className="relative z-10 border-t border-gray-800 mt-12">
         <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between md:flex-row">
-            <p className="text-sm text-gray-500">
+            <p className="text-gray-500 text-sm">
               &copy; {new Date().getFullYear()} GreySilicon. All rights reserved.
             </p>
             <div className="mt-4 flex space-x-6 md:mt-0">
               {navigation.legal.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
-                  className="text-sm text-gray-500 hover:text-blue-400 transition-colors duration-200"
+                  className="text-base text-gray-600 hover:text-blue-600 transition-colors duration-200"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
           </div>

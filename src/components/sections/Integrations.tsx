@@ -65,10 +65,9 @@ const IntegrationCard = ({ integration, index }: { integration: typeof integrati
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: integration.delay }}
-      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/5 to-white/0 p-0.5 backdrop-blur-sm"
+      className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
     >
-      <div className="absolute inset-0.5 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800"></div>
-      <div className="relative z-10 h-full rounded-2xl bg-gradient-to-b from-gray-900 to-gray-800/80 p-6">
+      <div className="relative z-10 h-full rounded-2xl bg-white p-6">
         <div className="flex items-start justify-between">
           <div className="flex items-start space-x-4">
             <div className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${integration.color} p-3`}>
@@ -77,26 +76,26 @@ const IntegrationCard = ({ integration, index }: { integration: typeof integrati
               </div>
             </div>
             <div>
-              <div className="inline-flex items-center rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-gray-300">
+              <div className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700">
                 {integration.category}
               </div>
-              <h3 className="mt-2 text-xl font-bold text-white">{integration.name}</h3>
+              <h3 className="mt-2 text-xl font-bold text-gray-900">{integration.name}</h3>
             </div>
           </div>
-          <button className="rounded-lg p-2 text-gray-400 hover:bg-gray-800 hover:text-white">
+          <button className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors">
             <FiExternalLink className="h-5 w-5" />
           </button>
         </div>
-        <p className="mt-4 text-gray-400">{integration.description}</p>
+        <p className="mt-4 text-gray-600">{integration.description}</p>
             <p className="mt-2 text-sm text-gray-500">
-              <span className="font-medium">Examples:</span> {integration.example}
+              <span className="font-medium text-gray-700">Examples:</span> {integration.example}
             </p>
         <div className="mt-6 flex items-center justify-between">
           <div className="flex -space-x-2">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="h-8 w-8 rounded-full border-2 border-gray-800 bg-gray-700"></div>
+              <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-gray-100 shadow-sm"></div>
             ))}
-            <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-800 bg-gray-800 text-xs text-gray-400">+5</div>
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-gray-100 text-xs text-gray-500 shadow-sm">+5</div>
           </div>
           <button className="group/btn flex items-center rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2 text-sm font-medium text-white hover:from-blue-500 hover:to-blue-600">
             <span>Connect</span>
@@ -105,8 +104,8 @@ const IntegrationCard = ({ integration, index }: { integration: typeof integrati
         </div>
       </div>
       
-      {/* Animated border effect */}
-      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${integration.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+      {/* Hover effect */}
+      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${integration.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
     </motion.div>
   );
 };
@@ -116,12 +115,9 @@ export default function Integrations() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section id="integrations" className="relative overflow-hidden py-20 sm:py-28">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden opacity-40">
-        <div className="absolute -right-1/3 -top-1/3 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl"></div>
-        <div className="absolute -left-1/4 bottom-0 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl"></div>
-      </div>
+    <section id="integrations" className="relative overflow-hidden bg-white py-20 sm:py-28">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50"></div>
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
@@ -130,14 +126,14 @@ export default function Integrations() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center rounded-full bg-blue-900/20 px-4 py-1.5 text-sm font-medium text-blue-400">
+          <div className="inline-flex items-center rounded-full bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700">
             <FiZap className="mr-2 h-4 w-4" />
             Powerful Integrations
           </div>
-          <h2 className="mt-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             Connect with your favorite tools
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
             Seamlessly integrate GreySilicon with your existing workflow and boost productivity.
           </p>
         </motion.div>

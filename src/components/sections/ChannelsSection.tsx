@@ -70,29 +70,30 @@ const FeatureItem = ({ text }: { text: string }) => (
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.3 }}
   >
-    <FaCheck className="h-4 w-4 mt-1 mr-2 text-green-400 flex-shrink-0" />
-    <span className="text-gray-200">{text}</span>
+    <FaCheck className="h-4 w-4 mt-1 mr-2 text-green-500 flex-shrink-0" />
+    <span className="text-gray-700">{text}</span>
   </motion.li>
 );
 
 const StatItem = ({ value, label }: { value: string; label: string }) => (
   <motion.div 
-    className="text-center p-3 bg-white/5 rounded-lg backdrop-blur-sm"
-    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-    transition={{ duration: 0.2 }}
+    className="text-center p-3 bg-gray-50 rounded-lg border border-gray-100"
+    whileHover={{ scale: 1.05, backgroundColor: 'rgba(249, 250, 251, 0.9)' }}
   >
-    <div className="text-xl font-bold text-white">{value}</div>
-    <div className="text-xs text-gray-300 mt-1">{label}</div>
+    <div className="text-xl font-bold text-gray-900">{value}</div>
+    <div className="text-xs text-gray-500 mt-1">{label}</div>
   </motion.div>
 );
 
 export default function ChannelsSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+    <section className="py-16 bg-white overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           <motion.h2 
-            className="text-4xl font-bold tracking-tight text-white sm:text-5xl"
+            className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -101,7 +102,7 @@ export default function ChannelsSection() {
             Any channel. Anywhere.
           </motion.h2>
           <motion.p 
-            className="mt-4 text-xl text-gray-300"
+            className="mt-4 text-xl text-gray-600"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,13 +123,13 @@ export default function ChannelsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <div className="relative bg-gray-900 p-6 h-full rounded-xl">
-                <div className={`flex items-center justify-center h-20 w-20 rounded-2xl mb-6 bg-gradient-to-br ${channel.gradient} text-white`}>
+              <div className="relative bg-white p-6 h-full rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className={`flex items-center justify-center h-20 w-20 rounded-2xl mb-6 bg-gradient-to-br ${channel.gradient} text-white shadow-md`}>
                   {channel.icon}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-2">{channel.name}</h3>
-                <p className="text-gray-300 mb-6">{channel.description}</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{channel.name}</h3>
+                <p className="text-gray-600 mb-6">{channel.description}</p>
                 
                 <ul className="space-y-2 mb-8">
                   {channel.features.map((feature, i) => (
@@ -143,7 +144,7 @@ export default function ChannelsSection() {
                 </div>
                 
                 <motion.button
-                  className={`w-full py-3 px-6 rounded-lg font-medium text-white bg-gradient-to-r ${channel.gradient} hover:opacity-90 transition-all duration-300 flex items-center justify-center`}
+                  className={`w-full py-3 px-6 rounded-lg font-medium text-white bg-gradient-to-r ${channel.gradient} hover:opacity-90 transition-all duration-300 flex items-center justify-center shadow-sm`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -151,7 +152,7 @@ export default function ChannelsSection() {
                   <FaRocket className="ml-2" />
                 </motion.button>
                 
-                <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-blue-50 blur-3xl opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
               </div>
             </motion.div>
           ))}

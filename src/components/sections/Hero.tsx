@@ -42,7 +42,7 @@ export default function Hero() {
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
-        this.color = `rgba(0, 85, 255, ${Math.random() * 0.2 + 0.05})`;
+        this.color = `rgba(59, 130, 246, ${Math.random() * 0.1 + 0.05})`;
       }
 
       update() {
@@ -114,26 +114,22 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[50vh] w-full overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
-      {/* Water animation canvas */}
-      <canvas 
-        ref={canvasRef} 
-        className="absolute inset-0 w-full h-full opacity-30"
-      />
+    <section className="relative min-h-[50vh] w-full overflow-hidden bg-white border-b border-gray-100">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
-      {/* Glassmorphism card */}
       <div className="relative min-h-[50vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
         <div className="w-full max-w-4xl mx-auto">
-          <div className="glass-card p-8 md:p-12 rounded-2xl border border-white/10 backdrop-blur-lg">
+          <div className="p-8 md:p-12 rounded-2xl bg-white border border-gray-100 shadow-sm">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl animate-fade-in">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl animate-fade-in">
                 <span className="block">Engage every customer,</span>
-                <span className="block bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   on every platform
                 </span>
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto animate-fade-in animate-delay-100">
+              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in animate-delay-100">
                 Fast. Scalable. Reliable. Connect with customers across 50+ networks in Africa with a single API integration.
               </p>
               
@@ -146,13 +142,13 @@ export default function Hero() {
                 </Link>
                 <Link
                   href="#demo"
-                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-medium rounded-lg border border-white/20 transition-all duration-300 transform hover:scale-105"
+                  className="px-8 py-4 bg-white text-gray-700 hover:bg-gray-50 font-medium rounded-lg border border-gray-200 transition-all duration-300 transform hover:scale-105 shadow-sm"
                 >
                   Schedule a Demo
                 </Link>
                 <Link
                   href="/dashboard"
-                  className="px-8 py-4 bg-transparent text-blue-400 hover:text-blue-300 font-medium rounded-lg border border-blue-400/50 transition-all duration-300 transform hover:scale-105 hover:bg-blue-500/10 flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-transparent text-blue-600 hover:text-blue-700 font-medium rounded-lg border border-blue-200 transition-all duration-300 transform hover:scale-105 hover:bg-blue-50 flex items-center justify-center gap-2"
                 >
                   <span>Go to Dashboard</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -165,15 +161,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Custom styles for glassmorphism and animations */}
+      {/* Animation styles */}
       <style jsx global>{`
-        .glass-card {
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-        }
-        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }

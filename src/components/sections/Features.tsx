@@ -49,24 +49,27 @@ const NotificationBubble = ({
   } 
 }) => (
   <motion.div
-    className="absolute z-0 bg-gray-800/90 backdrop-blur-sm p-3 rounded-lg shadow-lg flex items-center space-x-2 border border-gray-700"
-    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+    className="absolute flex items-center space-x-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-md"
+    initial={{ opacity: 0, scale: 0.9 }}
     animate={{ 
       opacity: [0, 1, 1, 0],
-      y: [20, 0, -10, -30],
-      scale: [0.8, 1.1, 1, 0.9],
+      scale: [0.9, 1.05, 1, 0.95],
+      y: [0, -5, 0, 5]
     }}
     transition={{ 
       duration: 6,
       delay,
       repeat: Infinity,
-      repeatType: 'loop',
-      repeatDelay: 10
+      repeatDelay: 4,
+      times: [0, 0.2, 0.8, 1]
     }}
-    style={position}
+    style={{
+      ...position,
+      zIndex: 10
+    }}
   >
-    <Icon className="h-5 w-5 text-blue-500" />
-    <span className="text-sm font-medium text-gray-200">{text}</span>
+    <Icon className="h-4 w-4 text-blue-600" />
+    <span className="text-sm font-medium text-gray-800">{text}</span>
   </motion.div>
 );
 
@@ -94,10 +97,9 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="relative pt-24 pb-16 bg-gradient-to-b from-gray-900 to-gray-800 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section className="py-20 bg-gray-50 border-t border-b border-gray-100">
       {/* Diagonal divider */}
-      <div className="absolute -top-0.5 left-0 right-0 h-24 bg-gradient-to-b from-white/5 to-transparent -skew-y-1 origin-top-left"></div>
-      <div className="absolute -top-0.5 left-0 right-0 h-24 bg-gray-900 -skew-y-1 origin-top-left -z-10"></div>
+      <div className="absolute -top-0.5 left-0 right-0 h-24 bg-white -skew-y-1 origin-top-left -z-10"></div>
       {/* Animated background elements */}
       {mounted && (
         <>
@@ -122,11 +124,11 @@ export default function Features() {
         </>
       )}
       
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-10 [mask-image:linear-gradient(0deg,#000,transparent)]">
-        <div className="absolute inset-0 bg-grid-blue-500/20 [mask-image:linear-gradient(0deg,#000,transparent_10%)]" />
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-grid-gray-200/50" />
       </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div 
           className="text-center relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -134,10 +136,10 @@ export default function Features() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Everything you need to scale your messaging
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-300">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
             Powerful features designed to help you build and scale your messaging infrastructure.
           </p>
         </motion.div>
@@ -153,17 +155,17 @@ export default function Features() {
             {features.map((feature, index) => (
               <motion.div
                 key={feature.name}
-                className="group relative bg-gray-800/60 backdrop-blur-sm p-8 rounded-2xl shadow-sm border border-gray-700/50 hover:shadow-lg transition-all duration-300 hover:border-blue-500/30"
+                className="group relative bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 variants={item}
                 whileHover={{ y: -5, boxShadow: '0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04)' }}
               >
-                <div className="absolute -top-6 left-8 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/20">
+                <div className="absolute -top-6 left-8 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-md">
                   <feature.icon className="h-6 w-6" aria-hidden="true" />
                 </div>
-                <h3 className="mt-8 text-xl font-semibold text-white">{feature.name}</h3>
-                <p className="mt-3 text-base text-gray-300 leading-relaxed">{feature.description}</p>
+                <h3 className="mt-8 text-xl font-semibold text-gray-900">{feature.name}</h3>
+                <p className="mt-3 text-base text-gray-600 leading-relaxed">{feature.description}</p>
                 {index % 2 === 0 && (
-                  <div className="absolute -right-3 -bottom-3 h-24 w-24 rounded-full bg-blue-500/5 -z-10"></div>
+                  <div className="absolute -right-4 -bottom-4 h-32 w-32 rounded-full bg-blue-100/50 blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
                 )}
               </motion.div>
             ))}
@@ -177,8 +179,8 @@ export default function Features() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="inline-block bg-gray-800/60 backdrop-blur-sm px-8 py-6 rounded-2xl border border-gray-700/50 shadow-sm">
-            <p className="text-lg text-gray-200">
+          <div className="inline-block bg-white px-8 py-6 rounded-2xl border border-gray-100 shadow-sm">
+            <p className="text-lg text-gray-700">
               Need something more? Our platform is fully customizable to fit your exact requirements.
             </p>
             <div className="mt-4">
